@@ -4,18 +4,28 @@
  * and open the template in the editor.
  */
 package gestionalumnos;
+import gestionalumnos.control.controlAlumnos;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author gem2u
  */
 public class pantallaAlumnos extends javax.swing.JFrame {
+    
+    registrarAlumno rAlumno = new registrarAlumno();
+    controlAlumnos ctAlumnos = new controlAlumnos();
+    actualizarAlumno actAlumno = new actualizarAlumno();
+    borrarAlumno brAlumno = new borrarAlumno();
 
     /**
      * Creates new form pantallaAlumnos
      */
     public pantallaAlumnos() {
         initComponents();
+        this.setLocationRelativeTo(null); //Se centre la ventana en medio de la pantalla
+        tbAlumnos.setModel(ctAlumnos.mostrarTabla()); //Linea para actualizar la tabla de alumnos
     }
 
     /**
@@ -27,24 +37,203 @@ public class pantallaAlumnos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbAlumnos = new javax.swing.JTable();
+        tfBuscar = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        btCancelar = new javax.swing.JButton();
+        btRegistrar = new javax.swing.JButton();
+        btActualizar = new javax.swing.JButton();
+        btBorrar = new javax.swing.JButton();
+        btActTabla = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(698, 333));
         setMinimumSize(new java.awt.Dimension(698, 333));
         setResizable(false);
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setText("GESTION DE ALUMNOS");
+
+        tbAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tbAlumnos);
+
+        tfBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfBuscarActionPerformed(evt);
+            }
+        });
+        tfBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfBuscarKeyReleased(evt);
+            }
+        });
+
+        jLabel2.setText("Buscar por boleta:");
+
+        btCancelar.setText("CERRAR");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+
+        btRegistrar.setText("REGISTRAR ALUMNO");
+        btRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRegistrarActionPerformed(evt);
+            }
+        });
+
+        btActualizar.setText("ACTUALIZAR A UN ALUMNO");
+        btActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizarActionPerformed(evt);
+            }
+        });
+
+        btBorrar.setText("BORRAR ALUMNO");
+        btBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBorrarActionPerformed(evt);
+            }
+        });
+
+        btActTabla.setText("ACTUALIZAR TABLA");
+        btActTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActTablaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 698, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(605, 605, 605)
+                                .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btRegistrar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btActualizar)
+                                .addGap(30, 30, 30)
+                                .addComponent(btBorrar)
+                                .addGap(26, 26, 26)
+                                .addComponent(btActTabla)))
+                        .addGap(10, 10, 10)))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btRegistrar)
+                    .addComponent(btActualizar)
+                    .addComponent(btBorrar)
+                    .addComponent(btActTabla))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btCancelar)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
+        // TODO add your handling code here:
+        int row = tbAlumnos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(null, "Debe elegir un alumno de la tabla.");
+        }else{
+            String boleta = tbAlumnos.getValueAt(row, 0).toString();
+            String nombre = tbAlumnos.getValueAt(row, 1).toString();
+            String pApellido = tbAlumnos.getValueAt(row, 2).toString();
+            String sApellido = tbAlumnos.getValueAt(row, 3).toString();
+            actAlumno.setCampos(boleta, nombre, pApellido, sApellido);
+            actAlumno.setVisible(true);
+        }
+    }//GEN-LAST:event_btActualizarActionPerformed
+
+    private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
+        // TODO add your handling code here:
+        rAlumno.setVisible(true);
+    }//GEN-LAST:event_btRegistrarActionPerformed
+
+    private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
+        // TODO add your handling code here:
+        int row = tbAlumnos.getSelectedRow();
+        if(row < 0){
+            JOptionPane.showMessageDialog(null, "Debe elegir un alumno de la tabla.");
+        }else{
+            String boleta = tbAlumnos.getValueAt(row, 0).toString();
+            String nombre = tbAlumnos.getValueAt(row, 1).toString();
+            String pApellido = tbAlumnos.getValueAt(row, 2).toString();
+            String sApellido = tbAlumnos.getValueAt(row, 3).toString();
+            brAlumno.setCampos(boleta, nombre, pApellido, sApellido);
+            brAlumno.setVisible(true);
+        }
+    }//GEN-LAST:event_btBorrarActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void btActTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActTablaActionPerformed
+        // TODO add your handling code here:
+        tbAlumnos.setModel(ctAlumnos.mostrarTabla());
+    }//GEN-LAST:event_btActTablaActionPerformed
+
+    private void tfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyReleased
+        // TODO add your handling code here:
+        String boleta = tfBuscar.getText();
+        char validar = evt.getKeyChar();
+        ctAlumnos.validarBoleta(validar);
+        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+            if(boleta == null || boleta.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Debe llenar el campo de búsqueda.");
+            }else{
+                tbAlumnos.setModel(ctAlumnos.buscarAlumno(boleta));
+            }
+        }
+    }//GEN-LAST:event_tfBuscarKeyReleased
+
+    private void tfBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,5 +271,15 @@ public class pantallaAlumnos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btActTabla;
+    private javax.swing.JButton btActualizar;
+    private javax.swing.JButton btBorrar;
+    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btRegistrar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable tbAlumnos;
+    private javax.swing.JTextField tfBuscar;
     // End of variables declaration//GEN-END:variables
 }
