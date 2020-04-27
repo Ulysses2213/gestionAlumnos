@@ -29,8 +29,7 @@ public class GestionAlumnos {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(pantallaAlumnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        pantallaAlumnos pAlumnos = new pantallaAlumnos();
-        pAlumnos.setVisible(true);
+        pantallaProfesores vistaProf = new pantallaProfesores();
+        vistaProf.setVisible(true);
     }
-    
 }

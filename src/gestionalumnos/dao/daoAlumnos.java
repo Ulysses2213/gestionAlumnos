@@ -22,19 +22,21 @@ public class daoAlumnos extends BDconnection{
         try{
             getConnection();
             if(connection != null){
-                String query = "select * from alumnos where boleta=?";
+                String query = "select * from alumnos where noeco=? and boleta=?";
                 PreparedStatement ps = connection.prepareStatement(query);
-                ps.setString(1, bsAlumnos.getBoleta());
+                ps.setString(1, bsAlumnos.getEco());
+                ps.setString(2, bsAlumnos.getBoleta());
                 ResultSet rs = ps.executeQuery();
                 if(rs.next()){
                     JOptionPane.showMessageDialog(null, "Este alumno ya esta registrado.");
                 }else{
-                query = "insert into alumnos(nombre, fapellido, sapellido, boleta) values(?,?,?,?)";
+                query = "insert into alumnos(nombre, fapellido, sapellido, boleta, noeco) values(?,?,?,?,?)";
                 ps = connection.prepareStatement(query);
                 ps.setString(1, bsAlumnos.getNombre());
                 ps.setString(2, bsAlumnos.getpApellido());
                 ps.setString(3, bsAlumnos.getsApellido());
                 ps.setString(4, bsAlumnos.getBoleta());
+                ps.setString(5, bsAlumnos.getEco());
                 res = ps.executeUpdate();
                 if(res >= 1){
                     JOptionPane.showMessageDialog(null, "Se registró correctamente al alumno.");
@@ -42,7 +44,7 @@ public class daoAlumnos extends BDconnection{
                 }else{
                     JOptionPane.showMessageDialog(null, "No se pudo registrar al alumno.");
                     codigo = -1;
-                }
+                    }
                 }
             }
         }catch(Exception e){
@@ -51,15 +53,16 @@ public class daoAlumnos extends BDconnection{
         return codigo;
     }
     
-    public DefaultTableModel tablaAlumnos(){
+    public DefaultTableModel tablaAlumnos(beansAlumnos bsAlumnos){
         String [] titulos = {"Boleta", "Nombre", "Primer Apellido", "Segundo Apellido"};
         String [] registro = new String[4];
         DefaultTableModel modelo = new DefaultTableModel(null, titulos);
         try{
             getConnection();
             if(connection != null){
-                String query = "select * from alumnos";
+                String query = "select * from alumnos where noeco=?";
                 PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, bsAlumnos.getEco());
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
                     registro[0] = rs.getString("boleta");
@@ -158,6 +161,25 @@ public class daoAlumnos extends BDconnection{
             e.printStackTrace();
         }
         return codigo;
+    }
+    
+    public void settingAlumnos(String eco, int alumnos){
+        String numAlumnos = Integer.toString(alumnos);
+        try{
+            getConnection();
+            if(connection != null){
+                String query = "update profesores set numalumnos=? where noeco=?";
+                PreparedStatement ps = connection.prepareStatement(query);
+                ps.setString(1, numAlumnos);
+                ps.setString(2, eco);
+                int res = ps.executeUpdate();
+                if(res >= 1){
+                    System.out.println("Se actualizo el numero de alumnos");
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
 }

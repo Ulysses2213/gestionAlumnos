@@ -16,7 +16,7 @@ public class controlAlumnos {
     beansAlumnos bsAlumnos = new beansAlumnos();
     daoAlumnos daoAlumnos = new daoAlumnos();
     
-    public int validarAlumno(String nombre, String pApellido, String sApellido, String boleta, int flag){
+    public int validarAlumno(String nombre, String pApellido, String sApellido, String boleta, int flag, String numEco){
         int codigo = 0;
         if(nombre == null || nombre.isEmpty()){
             JOptionPane.showMessageDialog(null, "Debe llenar el campo del nombre, es obligatorio");
@@ -31,9 +31,9 @@ public class controlAlumnos {
                     bsAlumnos.setpApellido(pApellido);
                     bsAlumnos.setsApellido(sApellido);
                     bsAlumnos.setBoleta(boleta);
+                    bsAlumnos.setEco(numEco);
                     if(flag == 0){ codigo = daoAlumnos.registrarAlumnos(bsAlumnos); }
                     if(flag == 1){ codigo = daoAlumnos.actualizarAlumno(bsAlumnos); }
-                    
                 }
             }
         }
@@ -46,8 +46,9 @@ public class controlAlumnos {
         return codigo;
     }
     
-    public DefaultTableModel mostrarTabla(){
-        DefaultTableModel modelo = daoAlumnos.tablaAlumnos();
+    public DefaultTableModel mostrarTabla(String eco){
+        bsAlumnos.setEco(eco);
+        DefaultTableModel modelo = daoAlumnos.tablaAlumnos(bsAlumnos);
         return modelo;
     }
     
@@ -67,6 +68,10 @@ public class controlAlumnos {
         if(Character.isDigit(validar)){
             JOptionPane.showMessageDialog(null, "No puede ingresar numeros en este campos, solo letras");
         }
+    }
+    
+    public void settingAlumnos(String eco, int alumnos){
+        daoAlumnos.settingAlumnos(eco, alumnos);
     }
     
 }

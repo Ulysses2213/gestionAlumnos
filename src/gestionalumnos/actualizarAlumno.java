@@ -11,6 +11,7 @@ import gestionalumnos.control.controlAlumnos;
  */
 public class actualizarAlumno extends javax.swing.JFrame {
     public String boletaAct = "";
+    public String eco = "";
     controlAlumnos ctAlumnos = new controlAlumnos();
 
     /**
@@ -133,7 +134,7 @@ public class actualizarAlumno extends javax.swing.JFrame {
         String nombre = tfNombre.getText();
         String Papellido = tfPapellido.getText();
         String Sapellido = tfSapellido.getText();
-        int codigo = ctAlumnos.validarAlumno(nombre, Papellido, Sapellido, boletaAct, flag);
+        int codigo = ctAlumnos.validarAlumno(nombre, Papellido, Sapellido, boletaAct, flag, eco);
         if(codigo == 1){
             tfNombre.setText("");
             tfPapellido.setText("");
@@ -142,7 +143,7 @@ public class actualizarAlumno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btActualizarActionPerformed
 
-    public void setCampos(String boleta, String nombre, String pApellido, String sApellido){
+    public void setCampos(String boleta, String nombre, String pApellido, String sApellido, String eco){
         boletaAct = boleta;
         tfNombre.setText(nombre);
         tfPapellido.setText(pApellido);

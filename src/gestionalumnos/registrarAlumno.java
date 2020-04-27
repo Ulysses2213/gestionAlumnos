@@ -11,6 +11,7 @@ import gestionalumnos.control.controlAlumnos;
  */
 public class registrarAlumno extends javax.swing.JFrame {
     controlAlumnos ctAlumnos = new controlAlumnos();
+    String numEco = "";
 
     /**
      * Creates new form registrarAlumno
@@ -162,7 +163,8 @@ public class registrarAlumno extends javax.swing.JFrame {
         String pApellido = tfpapellido.getText();
         String sApellido = tfsapellido.getText();
         String boleta = tfBoleta.getText();
-        int codigo = ctAlumnos.validarAlumno(nombre, pApellido, sApellido, boleta, flag);
+        
+        int codigo = ctAlumnos.validarAlumno(nombre, pApellido, sApellido, boleta, flag, numEco);
         if(codigo == 1){
             tfNombre.setText("");
             tfpapellido.setText("");
@@ -205,6 +207,9 @@ public class registrarAlumno extends javax.swing.JFrame {
         ctAlumnos.validarBoleta(validar);
     }//GEN-LAST:event_tfBoletaKeyReleased
 
+    public void setEco(String eco){
+        numEco = eco;
+    }
     /**
      * @param args the command line arguments
      */

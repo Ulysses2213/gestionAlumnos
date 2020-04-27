@@ -5,5 +5,14 @@ CREATE TABLE Alumnos(
 	fapellido Varchar(10), 
 	sapellido Varchar(10), 
 	boleta Varchar(10),
-	PRIMARY KEY (boleta)
+	noeco Varchar(8)
  );
+
+CREATE TABLE Profesores(
+	nombre Varchar(10),
+	fapellido Varchar(10),
+	sapellido Varchar(10),
+	noeco Varchar(8),
+	numalumnos Varchar(2),
+	PRIMARY KEY (noeco)
+);

@@ -10,7 +10,7 @@ package gestionalumnos.beans;
  * @author gem2u
  */
 public class beansAlumnos {
-    String nombre, pApellido, sApellido, boleta;
+    String nombre, pApellido, sApellido, boleta, eco;
 
     public String getNombre() {
         return nombre;
@@ -43,5 +43,15 @@ public class beansAlumnos {
     public void setBoleta(String boleta) {
         this.boleta = boleta;
     }
+
+    public String getEco() {
+        return eco;
+    }
+
+    public void setEco(String eco) {
+        this.eco = eco;
+    }
+    
+    
     
 }

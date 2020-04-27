@@ -25,7 +25,7 @@ public class pantallaAlumnos extends javax.swing.JFrame {
     public pantallaAlumnos() {
         initComponents();
         this.setLocationRelativeTo(null); //Se centre la ventana en medio de la pantalla
-        tbAlumnos.setModel(ctAlumnos.mostrarTabla()); //Linea para actualizar la tabla de alumnos
+        tbAlumnos.setModel(ctAlumnos.mostrarTabla(lbNumEco.getText())); //Linea para actualizar la tabla de alumnos
     }
 
     /**
@@ -42,11 +42,15 @@ public class pantallaAlumnos extends javax.swing.JFrame {
         tbAlumnos = new javax.swing.JTable();
         tfBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        btCancelar = new javax.swing.JButton();
+        btCerrar = new javax.swing.JButton();
         btRegistrar = new javax.swing.JButton();
         btActualizar = new javax.swing.JButton();
         btBorrar = new javax.swing.JButton();
         btActTabla = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        lbNombreProf = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lbNumEco = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(698, 333));
@@ -54,7 +58,7 @@ public class pantallaAlumnos extends javax.swing.JFrame {
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("GESTION DE ALUMNOS");
+        jLabel1.setText("GESTIÓN DE ALUMNOS");
 
         tbAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,10 +83,10 @@ public class pantallaAlumnos extends javax.swing.JFrame {
 
         jLabel2.setText("Buscar por boleta:");
 
-        btCancelar.setText("CERRAR");
-        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btCerrar.setText("CERRAR");
+        btCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelarActionPerformed(evt);
+                btCerrarActionPerformed(evt);
             }
         });
 
@@ -114,6 +118,14 @@ public class pantallaAlumnos extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("PROFESOR:");
+
+        lbNombreProf.setText("XXXXXXXXXXXXXXXXXX");
+
+        jLabel5.setText("NÚMERO ECONÓMICO: ");
+
+        lbNumEco.setText("XXXXXXXX");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,17 +134,11 @@ public class pantallaAlumnos extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(605, 605, 605)
-                                .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btRegistrar)
                                 .addGap(18, 18, 18)
@@ -141,21 +147,40 @@ public class pantallaAlumnos extends javax.swing.JFrame {
                                 .addComponent(btBorrar)
                                 .addGap(26, 26, 26)
                                 .addComponent(btActTabla)))
-                        .addGap(10, 10, 10)))
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbNombreProf)
+                                .addGap(76, 76, 76)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbNumEco))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(100, 100, 100)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1)))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tfBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lbNombreProf)
+                    .addComponent(jLabel5)
+                    .addComponent(lbNumEco))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -165,7 +190,7 @@ public class pantallaAlumnos extends javax.swing.JFrame {
                     .addComponent(btBorrar)
                     .addComponent(btActTabla))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCancelar)
+                .addComponent(btCerrar)
                 .addGap(21, 21, 21))
         );
 
@@ -175,6 +200,7 @@ public class pantallaAlumnos extends javax.swing.JFrame {
     private void btActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarActionPerformed
         // TODO add your handling code here:
         int row = tbAlumnos.getSelectedRow();
+        String eco = lbNumEco.getText();
         if(row < 0){
             JOptionPane.showMessageDialog(null, "Debe elegir un alumno de la tabla.");
         }else{
@@ -182,13 +208,14 @@ public class pantallaAlumnos extends javax.swing.JFrame {
             String nombre = tbAlumnos.getValueAt(row, 1).toString();
             String pApellido = tbAlumnos.getValueAt(row, 2).toString();
             String sApellido = tbAlumnos.getValueAt(row, 3).toString();
-            actAlumno.setCampos(boleta, nombre, pApellido, sApellido);
+            actAlumno.setCampos(boleta, nombre, pApellido, sApellido, eco);
             actAlumno.setVisible(true);
         }
     }//GEN-LAST:event_btActualizarActionPerformed
 
     private void btRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistrarActionPerformed
         // TODO add your handling code here:
+        rAlumno.setEco(lbNumEco.getText());
         rAlumno.setVisible(true);
     }//GEN-LAST:event_btRegistrarActionPerformed
 
@@ -207,14 +234,18 @@ public class pantallaAlumnos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btBorrarActionPerformed
 
-    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+    private void btCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCerrarActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_btCancelarActionPerformed
+        int alumnos = tbAlumnos.getRowCount();
+        String eco = lbNumEco.getText();
+        ctAlumnos.settingAlumnos(eco, alumnos);
+        tbAlumnos.setModel(ctAlumnos.mostrarTabla(lbNumEco.getText()));
+        dispose();
+    }//GEN-LAST:event_btCerrarActionPerformed
 
     private void btActTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActTablaActionPerformed
         // TODO add your handling code here:
-        tbAlumnos.setModel(ctAlumnos.mostrarTabla());
+        tbAlumnos.setModel(ctAlumnos.mostrarTabla(lbNumEco.getText()));
     }//GEN-LAST:event_btActTablaActionPerformed
 
     private void tfBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBuscarKeyReleased
@@ -223,7 +254,7 @@ public class pantallaAlumnos extends javax.swing.JFrame {
         char validar = evt.getKeyChar();
         ctAlumnos.validarBoleta(validar);
         if(evt.getKeyChar() == KeyEvent.VK_ENTER){
-            if(boleta == null || boleta.isEmpty()){
+            if(boleta == null || boleta.isEmpty() || boleta.length() < 10){
                 JOptionPane.showMessageDialog(null, "Debe llenar el campo de búsqueda.");
             }else{
                 tbAlumnos.setModel(ctAlumnos.buscarAlumno(boleta));
@@ -235,6 +266,11 @@ public class pantallaAlumnos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfBuscarActionPerformed
 
+    public void setCamposProfesor(String nombre, String papellido, String sapellido, String eco){
+        lbNombreProf.setText(nombre+" "+papellido+" "+sapellido);
+        lbNumEco.setText(eco);
+        tbAlumnos.setModel(ctAlumnos.mostrarTabla(lbNumEco.getText()));
+    }
     /**
      * @param args the command line arguments
      */
@@ -274,11 +310,15 @@ public class pantallaAlumnos extends javax.swing.JFrame {
     private javax.swing.JButton btActTabla;
     private javax.swing.JButton btActualizar;
     private javax.swing.JButton btBorrar;
-    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btCerrar;
     private javax.swing.JButton btRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbNombreProf;
+    private javax.swing.JLabel lbNumEco;
     public javax.swing.JTable tbAlumnos;
     private javax.swing.JTextField tfBuscar;
     // End of variables declaration//GEN-END:variables
